@@ -3,7 +3,7 @@ import CampoTexto from '../../componentes/CampoTexto';
 import ListaSuspensa from '../ListaSuspensa';
 import Botao from '../Botao';
 import {useState} from 'react'
-
+import { v4 as uuidv4 } from 'uuid';
 const Formulario = (props) =>{    
  
     // States obs setValor = hoocks
@@ -20,9 +20,10 @@ const Formulario = (props) =>{
         nome,
         cargo,
         imagem,
-        time
+        time,
+        id : uuidv4()
        })
-
+        
        setNome('')
        setCargo('')
        seImagem('')      
