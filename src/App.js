@@ -47,10 +47,19 @@ const times = [
   }
 
   function deletarColaborador(id){
-    debugger
+    
     setColaboradores(colaboradores.filter(colaboradores => colaboradores.id !== id))
   }
 
+  function resolverFavorito(id){
+    debugger
+    setColaboradores(colaboradores.map(
+      colaborador =>{
+        if(colaborador.id === id) colaborador.favorito = !colaborador.favorito
+        return colaborador
+      }
+    ))
+  }
   return (
     <div className="App">
       <Banner/>      
@@ -63,6 +72,7 @@ const times = [
         corSecundaria={time.corSecundaria}
         colaboradores={colaboradores.filter(colaborador => colaborador.time === time.nome)}   
         aoDeletar={deletarColaborador}    
+        aoFavoritar ={resolverFavorito}
        />)}
 
         <Rodape/>

@@ -21,6 +21,7 @@ const Formulario = (props) =>{
         cargo,
         imagem,
         time,
+        favorito : false,
         id : uuidv4()
        })
         
