@@ -1,29 +1,34 @@
 import Colaborador from '../Colaborador'
 import './Time.css'
+import hexToRgba from 'hex-to-rgba';
 
-
-const Time = (props) =>{
+const Time = ({time,colaboradores, aoDeletar, mudarDeCor,aoFavoritar}) =>{
     
-    const fundo = {backgroundColor: props.corSecundaria}
-    const corPrimaria = {borderColor: props.corPrimaria}
-
-    
-        if(props.colaboradores.length === 0){
+   // const fundo = {backgroundColor: props.corSecundaria}
+   // const corPrimaria = {borderColor: props.corPrimaria}
+            
+        console.log(time)
+        if(colaboradores.length === 0){
             return null
         }else{
 
             return (
-         <section className='time' style={fundo}>
-            <h3 style={corPrimaria}>{props.nome}</h3>
+            <section className='time'
+             style={{backgroundColor: hexToRgba(time.cor, '0.3')}}>
+             <input type='color'
+              value={time.cor} 
+              onChange={evento => mudarDeCor(evento.target.value,time.id)}  
+              className='input-cor'/>
+            <h3 style={{borderColor: time.cor}} >{time.nome}</h3>
+       
             <div className='colaboradores'>
-            {props.colaboradores.map( colaborador => 
+            {colaboradores.map( colaborador => 
                 <Colaborador 
-                  key={colaborador.nome}
-                  favorito = {colaborador.favorito}
-                  id = {colaborador.id}
-                  nome={colaborador.nome} cargo={colaborador.cargo} imagemUrl={colaborador.imagem} corPrimaria={props.corPrimaria}
-                 aoDeletar={props.aoDeletar}
-                 aoFavoritar={props.aoFavoritar}
+                  key={colaborador.id}               
+                  colaborador={colaborador}
+                  corDeFundo={time.cor}
+                  aoDeletar={aoDeletar}
+                  aoFavoritar={aoFavoritar}
                 />
             )}
             </div>          
