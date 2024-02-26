@@ -72,13 +72,20 @@ function App() {
       }
     ))
   }
+
+  function cadastraNovoTime(novoTime){
+    setTimes([...times,{...novoTime,id:uuidv4()}])
+  }
   return (
     <div className="App">
       <Banner />
       <Formulario 
       times={times.map(time => time.nome)} 
-      onColaboradorCadastrado={colaborador => aoNovoColaboradorAdicionado(colaborador)} />
-
+      onColaboradorCadastrado={colaborador => aoNovoColaboradorAdicionado(colaborador)} 
+      novoTime={cadastraNovoTime}
+      />
+      <section className='times'>
+      <h1>Minha organização</h1>
       {times.map(time => <Time
         key={time.nome}
         time ={time}     
@@ -87,6 +94,8 @@ function App() {
         aoFavoritar={resolverFavorito}
         mudarDeCor={mudarDeCorDoTime}        
       />)}
+      </section>
+    
 
       <Rodape />
 
